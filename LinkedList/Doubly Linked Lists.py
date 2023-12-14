@@ -18,9 +18,10 @@ class LinkedList:
 
     def insertFront(self, val):
         newNode = ListNode(val)
+        # 将新的node插入dummy和它后面的node，然后更新new的前后指向
         newNode.prev = self.head
         newNode.next = self.head.next
-
+        # 更新原有的dummynode指向new，且dummy后的node也指向new
         self.head.next.prev = newNode
         self.head.next = newNode
 
