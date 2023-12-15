@@ -46,9 +46,9 @@ class Solution2(object):
             return None
 
         newHead = head
-        while head.next:
+        while head.next:  # 如果存在sub问题
             newHead = self.reverseList(head.next)
-            head.next.next = head
+            head.next.next = head  # 将head和他的下一个反转
         head.next = None
 
         return newHead
