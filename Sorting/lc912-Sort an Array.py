@@ -42,7 +42,7 @@ class Solution(object):
             return res + left[leftidx:] + right[rightidx:]
 
         # mergesort divide
-        if len(nums) == 1:
+        if len(nums) <= 1:
             return nums
 
         middle = len(nums) // 2
@@ -51,7 +51,25 @@ class Solution(object):
 
         return merge(self.sortArray_merge(left), self.sortArray_merge(right))
 
+    def sortArray_quick(self, nums):
+        n = len(nums)
+        if n <= 1:
+            return nums
+
+        pivot = nums[-1]
+        left = 0
+        for i in range(n - 1):
+            if nums[i] < pivot:
+                tmp = nums[left]
+                nums[left] = nums[i]
+                nums[i] = tmp
+                left += 1
+        nums[-1] = nums[left]
+        nums[left] = pivot
+
+        return self.sortArray_quick(nums[:left]) + [pivot] + self.sortArray_quick(nums[left + 1:])
+
 
 soso = Solution()
-res = soso.sortArray_merge(nums)
+res = soso.sortArray_quick(nums)
 print(res)
