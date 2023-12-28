@@ -1,0 +1,17 @@
+# https://leetcode.com/problems/number-of-1-bits/
+n = '00000000000000000000000000001011'
+# Output: 3
+
+
+class Solution(object):
+    def hammingWeight(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        count = 0
+        while n > 0:
+            if n & 1 == 1:
+                count += 1
+            n = n >> 1
+        return count
