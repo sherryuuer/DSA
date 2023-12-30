@@ -12,21 +12,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        curSum = maxSum = nums[0]
-        L, R = 0, 1
-        while True:
-            if R == L:
-                break
+        curMax = curMin = maxSum = minSum = nums[0]
+        total = sum(nums)
 
-            if curSum + nums[R] < nums[R]:
-                L = R
-                curSum = nums[R]
-            else:
-                curSum = curSum + nums[R]
-
-            maxSum = max(curSum, maxSum)
-            R = (R + 1) % len(nums)
-        return maxSum
+        for n in nums[1:]:
+            curMax = max(n, curMax + n)
+            curMin = min(n, curMin + n)
+            minSum = min(curMin, minSum)
+            maxSum = max(curMax, maxSum)
+        return max(maxSum, total - minSum) if maxSum > 0 else maxSum
 
 
 solution = Solution()

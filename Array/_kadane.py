@@ -1,3 +1,4 @@
+# give an array, find a substring that return the maxsum of the array
 arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
 
