@@ -7,7 +7,7 @@ threshold = 4
 # Explanation: Sub-arrays [2,5,5],[5,5,5] and [5,5,8] have averages 4, 5 and 6 respectively. All other sub-arrays of size 3 have averages less than 4 (the threshold).
 
 
-class Solution(object):
+class Solution_timeout(object):
     def numOfSubarrays(self, arr, k, threshold):
         """
         :type arr: List[int]
@@ -26,6 +26,25 @@ class Solution(object):
                 L += 1
             if R - L + 1 == k and sum(window) / k >= threshold:
                 res += 1
+        return res
+
+
+class Solution(object):
+    def numOfSubarrays(self, arr, k, threshold):
+        """
+        :type arr: List[int]
+        :type k: int
+        :type threshold: int
+        :rtype: int
+        """
+        curSum = sum(arr[:k - 1])
+        res = 0
+        for L in range(len(arr) - k + 1):
+            # R = L + k - 1
+            curSum += arr[L + k - 1]
+            if curSum / k >= threshold:
+                res += 1
+            curSum -= arr[L]
         return res
 
 
