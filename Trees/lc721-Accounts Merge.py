@@ -70,3 +70,41 @@ accounts = [["John", "johnsmith@mail.com", "john_newyork@mail.com"],
 solution = Solution()
 res = solution.accountsMerge(accounts)
 print(res)
+
+
+
+`defaultdict` 是 Python 中 `collections` 模块中的一种字典（dict）的变体。它与普通字典（`dict`）的区别在于，`defaultdict` 允许你为字典的键指定默认值类型，当访问不存在的键时，会自动为该键创建默认值。
+
+以下是 `defaultdict` 的基本用法：
+
+```python
+from collections import defaultdict
+
+# 创建一个 defaultdict，并指定默认值类型为 int
+my_dict = defaultdict(int)
+
+# 访问不存在的键，会自动创建并初始化为默认值 0
+my_dict['a'] += 1
+my_dict['b'] += 2
+
+print(my_dict)  # 输出: defaultdict(<class 'int'>, {'a': 1, 'b': 2})
+```
+
+在上面的例子中，`defaultdict` 的默认值类型被设置为 `int`，因此当访问字典中不存在的键时，会自动创建一个新的键，并将其默认值初始化为 0。这样就避免了在使用普通字典时需要在每次访问前检查键是否存在的麻烦。
+
+你可以将任何可调用对象（例如函数或类）作为默认值类型，以便更复杂的初始化逻辑。例如：
+
+```python
+from collections import defaultdict
+
+# 创建一个 defaultdict，并指定默认值类型为 list
+my_dict = defaultdict(list)
+
+# 访问不存在的键，会自动创建并初始化为空列表
+my_dict['a'].append(1)
+my_dict['b'].append(2)
+
+print(my_dict)  # 输出: defaultdict(<class 'list'>, {'a': [1], 'b': [2]})
+```
+
+这使得 `defaultdict` 在某些情况下非常方便，特别是在处理计数或分组等任务时。
