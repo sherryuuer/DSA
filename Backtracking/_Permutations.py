@@ -10,11 +10,13 @@ def helper(i, nums):
 
     resPerms = []
     perms = helper(i + 1, nums)
+    # print(perms, "---")
     for p in perms:
         for j in range(len(p) + 1):
             pCopy = p.copy()
             pCopy.insert(j, nums[i])
             resPerms.append(pCopy)
+    # print(resPerms)
     return resPerms
 
 
@@ -30,4 +32,10 @@ def permutationsIterative(nums):
                 pCopy.insert(i, n)
                 nextPerms.append(pCopy)
         perms = nextPerms
+        # print(perms)
     return perms
+
+
+nums = [1, 2, 3]
+res = permutationsRecursive(nums)
+# print(res)
