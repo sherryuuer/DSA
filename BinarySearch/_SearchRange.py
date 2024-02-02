@@ -1,24 +1,30 @@
 # 一个二元查找的模板在一个range中是否存在target值
-def is_correct(target, n):
-    if n > target:
+# low = 1, high = 100
+
+# Binary search on some range of values
+def binarySearch(low, high):
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if isCorrect(mid) > 0:
+            high = mid - 1
+        elif isCorrect(mid) < 0:
+            low = mid + 1
+        else:
+            return mid
+    return -1
+
+# Return 1 if n is too big, -1 if too small, 0 if correct
+
+
+def isCorrect(n):
+    if n > 10:
         return 1
-    elif n < target:
+    elif n < 10:
         return -1
     else:
         return 0
 
-
-def binary_search(low, high, n, target):
-
-    while low <= high:
-        middle = (low + high) // 2
-
-        if is_correct(middle) > 0:
-            high = middle - 1
-        elif is_correct(middle) < 0:
-            low = middle + 1
-        else:
-            return middle
-    return -1
 
 # O(logn)
