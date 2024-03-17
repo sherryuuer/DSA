@@ -27,7 +27,7 @@ res = longest(s)
 print(res)
 
 
-# 以上也是中心扩展法
+# 以上也是中心扩展法（llm）
 def longestPalindrome(s):
     def expand_around_center(left, right):
         while left >= 0 and right < len(s) and s[left] == s[right]:
