@@ -94,3 +94,67 @@ class WordDictionary:
             return cur.word
 
         return dfs(0, self.root)
+
+
+# 加入了get words方法：
+
+class TrieNode:
+    def __init__(self, val=None):
+        self.children = {}
+        self.word = False
+        self.val = val
+
+
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def add_word(self, word):
+        cur = self.root
+        for c in word:
+            if c not in cur.children:
+                cur.children[c] = TrieNode(c)
+            cur = cur.children[c]
+        cur.word = True
+
+    def search_word(self, word):
+        def dfs(j, root):
+            cur = root
+            for i in range(j, len(word)):
+                c = word[i]
+                if c == '.':
+                    for child in cur.children.values():
+                        if dfs(i + 1, child):
+                            return True
+                    return False
+
+                else:
+                    if c not in cur.children:
+                        return False
+                    cur = cur.children[c]
+            return cur.word
+
+        return dfs(0, self.root)
+
+    def get_words(self):
+        def dfs(cur, curset, subsets):
+            curset.append(cur.val)
+            if cur.word:
+                subsets.append(''.join(curset))
+            # 嵌套字典
+            for child in cur.children.values():
+                dfs(child, curset, subsets)
+            curset.pop()
+
+        result = []
+        for cur in self.root.children.values():
+            dfs(cur, [], result)
+        return result
+
+
+obj = WordDictionary()
+obj.add_word("bad")
+obj.add_word("dad")
+obj.add_word("mad")
+print(obj.get_words())
+print(obj.search_word(".ad"))
